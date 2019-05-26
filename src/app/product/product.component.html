@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+        <h2 class="text-center">Add New Product</h2>
+        <form>
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" [(ngModel)]="product.description" placeholder="Description" name="Description" class="form-control" id="description">
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" [(ngModel)]="product.price" placeholder="Price" name="Price" class="form-control" id="price">
+          </div>
+
+          <button class="btn btn-success" (click)="createProduct(product)">Add</button>
+        </form>
+    </div>
+    <div class="col-sm">
+      <h2 class="text-center">All Products</h2>
+      <table class="table table-condensed" style="max-height: 400px; overflow: scroll">
+        <thead></thead>
+        <tr>
+          <th align="center">description</th>
+          <th  align="center">price</th>
+          <th  align="center" colspan="2">Actions</th>
+        </tr>
+        <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{product.description}}</td>
+          <td>{{product.price}}</td>
+          <td><button class="btn btn-small btn-warning" (click)="getProductById(product.id); openModal('custom-modal-1')">Edit</button></td>
+          <td><button type="button" class="btn btn-small btn-danger" (click)="deleteProduct(product.id)">Delete</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<jw-modal id="custom-modal-1">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="text-center">Update Product</h2>
+
+  <form>
+    <div class="form-group">
+      <label for="name">Description:</label>
+      <input type="name" [(ngModel)]="editProduct.description" placeholder="Name" name="name" class="form-control" id="name">
+    </div>
+
+    <div class="form-group">
+      <label for="designation">Price:</label>
+      <input type="number" [(ngModel)]="editProduct.price" placeholder="Designation" name="designation" class="form-control" id="designation">
+    </div>
+
+    <button class="btn btn-success" (click)="updateProduct(editProduct); closeModal('custom-modal-1');">Update</button>
+  </form>
+
+      </div>
+    </div>
+  </div>
+</jw-modal>
